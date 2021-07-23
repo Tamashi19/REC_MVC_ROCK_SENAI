@@ -18,8 +18,11 @@ namespace Rock_Senai.Controllers
             _logger = logger;
         }
 
+        
+
         public IActionResult Index()
         {
+            Musico m1 = new Musico();
             return View();
         }
 

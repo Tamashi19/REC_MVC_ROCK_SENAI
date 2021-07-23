@@ -12,9 +12,12 @@ namespace Rock_Senai.Models
 
         private const string PATH = "Database/usuario.csv";
 
+        public  Usuario()
+        {
+            CriarPastaArquivo(PATH);
+        }
 
-
-        internal static List<string> ReadAllLinesCSV(string PATH)
+        public  List<string> ReadAllLinesCSV(string PATH)
         {
 
             List<string> linhas = new List<string>();
@@ -39,12 +42,10 @@ namespace Rock_Senai.Models
             var usuarioLogado =
             csv.Find(
                 x =>
-                x.Split(";")[1] == "Email" &&
-                x.Split(";")[2] == "Senha"
+                x.Split(";")[1] == Email &&
+                x.Split(";")[2] == Senha
             );
 
-
-           
             if (usuarioLogado != null)
             {
                 logado = true;

@@ -15,34 +15,30 @@ namespace Rock_Senai.Models
 
         public override bool Logar(string Email, string Senha)
         {
-             bool logado = false;
-
             List<string> csv = ReadAllLinesCSV(PATH);
 
             var usuarioLogado =
             csv.Find(
                 x =>
-                x.Split(";")[2] == Senha &&
-                x.Split(";")[1] == Email
+                x.Split(";")[1] == Email  &&
+                x.Split(";")[2] == Senha 
             );
 
-            usuarioLogado =
-            csv.Find(
-                x =>
-                x.Split(";")[2] == Senha &&
-                x.Split(";")[3] == Email
-            );
-
-
-           
-            if (usuarioLogado != null)
+            if (usuarioLogado == null)
             {
-                logado = true;
-                return logado;
+               usuarioLogado =
+                csv.Find(
+                    x =>
+                    x.Split(";")[3] == Email  &&
+                    x.Split(";")[2] == Senha
+                );
             }
 
-            
-            return logado; 
+            if (usuarioLogado == null)
+            {
+                return false;
+            }
+            return true; 
         }
 
 
